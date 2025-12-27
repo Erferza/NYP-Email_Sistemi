@@ -1,0 +1,6 @@
+com\nyp\backend\model\Email.class
+com\nyp\backend\repository\EmailRepository.class
+com\nyp\backend\BackendApplication.class
+com\nyp\backend\enums\FolderType.class
+com\nyp\backend\model\Attachment.class
+com\nyp\backend\enums\Priority.class

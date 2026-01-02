@@ -111,18 +111,6 @@ public class Mailbox implements IMailSender, IMailReceiver, ISearchable, IFolder
     }
 
     @Override
-    public Email getMailById(int id) {
-        // Deprecated int id usage, should change to String or parse
-        // This method signature is from Interface IMailReceiver.
-        // I can't change the interface easily without breaking everything.
-        // But I can overload or fallback.
-        // Since I changed Model ID to String, this will not compile if interface says
-        // int.
-        // I MUST update interface `IMailReceiver.java`.
-        return null;
-    }
-
-    // New method for String ID
     public Email getMailById(String id) {
         for (Folder folder : folders) {
             Email email = folder.findEmailById(id);

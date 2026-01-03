@@ -132,27 +132,38 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
 }
 
+/* Sidebar Buttons - Güncellenmiş aktif durum stilleri */
 .sidebar-button {
     -fx-background-color: transparent;
     -fx-alignment: CENTER_LEFT;
     -fx-padding: 12 20;
     -fx-font-size: 15px;
     -fx-text-fill: #a6adc8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
 }
 
 .sidebar-button:hover {
-    -fx-background-color: #313244;
+    -fx-background-color: rgba(137, 180, 250, 0.15);
     -fx-text-fill: #cdd6f4;
 }
 
-.sidebar-button:selected {
-    -fx-background-color: #313244;
-    -fx-border-color: #89b4fa;
-    -fx-border-width: 0 0 0 4;
-    -fx-text-fill: #89b4fa;
+/* AKTİF DURUM - En önemli kısım! */
+.sidebar-button.active {
+    -fx-background-color: #89b4fa;
+    -fx-text-fill: #1e1e2e;
     -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(137, 180, 250, 0.4), 8, 0, 0, 0);
 }
 
+/* Aktif buton hover durumu */
+.sidebar-button.active:hover {
+    -fx-background-color: #74c7ec;
+    -fx-text-fill: #1e1e2e;
+}
+
+/* Eski selected stili kaldırıldı - artık .active kullanıyoruz */
 
 /* Cards/Panels */
 .card {

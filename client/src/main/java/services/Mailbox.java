@@ -60,6 +60,7 @@ public class Mailbox implements IMailSender, IMailReceiver, ISearchable, IFolder
         try {
             fetchFolder(inbox);
             fetchFolder(sent);
+            fetchFolder(drafts);
             fetchFolder(trash);
             fetchFolder(starred); // Special case in backend? Or query?
         } catch (Exception e) {
@@ -67,22 +68,30 @@ public class Mailbox implements IMailSender, IMailReceiver, ISearchable, IFolder
         }
     }
 
-    private void fetchFolder(Folder folder) {
-        try {
-            String url = "/emails?email=" + user.getEmail() + "&folder=" + folder.getType();
-            if (folder.getType() == FolderType.STARRED) {
-                // Optional: Backend support for STARRED query
-                // For now, client side filter? Or simple query logic
-            }
-            String response = ApiClient.get(url);
-            Type listType = new TypeToken<ArrayList<Email>>() {
-            }.getType();
-            List<Email> emails = gson.fromJson(response, listType);
-            folder.setEmails(emails);
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
+
+  private void fetchFolder(Folder folder) {
+    try {
+      String url = "/emails?email=" + user.getEmail() + "&folder=" + folder.getType().toString();
+
+      System.out.println("Fetching folder: " + folder.getName() + " with URL: " + url);
+
+      String response = ApiClient.get(url);
+      Type listType = new TypeToken<ArrayList<Email>>() {}.getType();
+      List<Email> emails = gson.fromJson(response, listType);
+
+      if (emails == null) {
+        emails = new ArrayList<>();
+      }
+
+      System.out.println("Fetched " + emails.size() + " emails for folder: " + folder.getName());
+      folder.setEmails(emails);
+
+    } catch (Exception e) {
+      System.err.println("Error fetching folder " + folder.getName() + ": " + e.getMessage());
+      e.printStackTrace();
+      folder.setEmails(new ArrayList<>());
     }
+  }
 
     @Override
     public boolean sendMail(Email email) throws MailSendException {
@@ -201,24 +210,67 @@ public class Mailbox implements IMailSender, IMailReceiver, ISearchable, IFolder
 
     // Helpers
     public void moveToTrash(Email email) {
+      try {
+        System.out.println("Attempting to delete email ID: " + email.getId());
+        System.out.println("Email subject: " + email.getSubject());
+
+        ApiClient.delete("/emails/" + email.getId());
+        System.out.println("Delete API call completed");
+        refresh();
+
+        System.out.println("Refresh completed. Trash count: " + trash.getEmails().size());
+      } catch (Exception e) {
+        System.err.println("Failed to move to trash: " + e.getMessage());
+        e.printStackTrace();
+      }
+    }
+
+  public void saveDraft(DraftEmail draft) {
+    try {
+      // DraftEmail'i normal Email'e dönüştür
+      Email email = new Email();
+      email.setFrom(draft.getFrom());
+      email.setTo(draft.getTo());
+      email.setSubject(draft.getSubject());
+      email.setBody(draft.getBody());
+
+      // Backend'e gönder
+      String json = gson.toJson(email);
+      String response = ApiClient.post("/emails/draft", json);
+
+      System.out.println("Draft saved, response: " + response);
+
+      // Taslaklar klasörünü yenile
+      fetchFolder(drafts);
+
+    } catch (Exception e) {
+      System.err.println("Failed to save draft: " + e.getMessage());
+      e.printStackTrace();
+      // Fallback: sadece local kaydet
+      drafts.addEmail(draft);
+    }
+  }
+
+    public void starEmail(Email email) {
         try {
-            ApiClient.delete("/emails/" + email.getId()); // Using DELETE for trash move
-            refresh();
+            ApiClient.put("/emails/" + email.getId() + "/star", "");
+            email.setStarred(true);
+            // Not: refresh() çağrısı MainView'da yapılıyor
         } catch (Exception e) {
+            System.err.println("Failed to star email: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    public void saveDraft(DraftEmail draft) {
-        drafts.addEmail(draft); // Local only
-    }
-
-    public void starEmail(Email email) {
-        email.setStarred(true);
-        // Backend update needed
-    }
-
     public void unstarEmail(Email email) {
-        email.setStarred(false);
+        try {
+            ApiClient.put("/emails/" + email.getId() + "/unstar", "");
+            email.setStarred(false);
+            // Not: refresh() çağrısı MainView'da yapılıyor
+        } catch (Exception e) {
+            System.err.println("Failed to unstar email: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public Folder getInbox() {

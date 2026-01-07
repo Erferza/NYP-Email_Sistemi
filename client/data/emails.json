@@ -1,0 +1,250 @@
+[
+  {
+    "id": "dc25e6d8-afdc-4aa7-871c-76f77f5c0735",
+    "from": "admin@nyp.com",
+    "to": [
+      "user1@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Hoşgeldiniz!",
+    "body": "NYP Email Sistemine hoş geldiniz. Bu örnek bir mesajdır.",
+    "sentDate": "Jan 5, 2026, 3:54:55 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "user1@nyp.com",
+    "folder": "INBOX"
+  },
+  {
+    "id": "601527f1-eb16-4373-a31b-ac1a5356946b",
+    "from": "user2@nyp.com",
+    "to": [
+      "user1@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Proje Toplantısı",
+    "body": "Yarın saat 14:00\u0027te proje toplantımız var. Lütfen hazırlıklı gelin.",
+    "sentDate": "Jan 6, 2026, 3:54:55 AM",
+    "isRead": true,
+    "isStarred": false,
+    "priority": "HIGH",
+    "attachments": [],
+    "ownerEmail": "user1@nyp.com",
+    "folder": "INBOX"
+  },
+  {
+    "id": "dc159b49-fa9b-47a6-96fa-59de9e38397b",
+    "from": "user1@nyp.com",
+    "to": [
+      "user2@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Re: Proje Toplantısı",
+    "body": "Tamam, hazırlıklarımı yapacağım.",
+    "sentDate": "Jan 6, 2026, 3:54:55 AM",
+    "isRead": true,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "user1@nyp.com",
+    "folder": "SENT"
+  },
+  {
+    "id": "735735a0-dcf0-4158-a97c-b40217eb4cab",
+    "from": "user1@nyp.com",
+    "to": [
+      "admin@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Rapor Taslağı",
+    "body": "Ay sonu raporunu hazırlıyorum...",
+    "sentDate": "Jan 7, 2026, 3:54:55 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "user1@nyp.com",
+    "folder": "DRAFTS"
+  },
+  {
+    "id": "67c0c2bd-0b64-46ed-834b-0902e8e800eb",
+    "from": "admin@nyp.com",
+    "to": [
+      "user2@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Sistem Duyurusu",
+    "body": "Sistemde bakım çalışması yapılacaktır.",
+    "sentDate": "Jan 4, 2026, 3:54:55 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "user2@nyp.com",
+    "folder": "INBOX"
+  },
+  {
+    "id": "c189bda2-0bab-4bc8-b307-5b9edc95ebd7",
+    "from": "user1@nyp.com",
+    "to": [
+      "user2@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Re: Proje Toplantısı",
+    "body": "Tamam, hazırlıklarımı yapacağım.",
+    "sentDate": "Jan 6, 2026, 3:54:55 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "user2@nyp.com",
+    "folder": "INBOX"
+  },
+  {
+    "id": "8ba099f2-e99e-4772-86db-1786c8faea29",
+    "from": "user2@nyp.com",
+    "to": [
+      "user1@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Proje Toplantısı",
+    "body": "Yarın saat 14:00\u0027te proje toplantımız var.",
+    "sentDate": "Jan 6, 2026, 3:54:55 AM",
+    "isRead": true,
+    "isStarred": false,
+    "priority": "HIGH",
+    "attachments": [],
+    "ownerEmail": "user2@nyp.com",
+    "folder": "SENT"
+  },
+  {
+    "id": "cc53b727-56d8-4dd1-9eda-ac912a61d50b",
+    "from": "spam@example.com",
+    "to": [
+      "user2@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Spam Mesaj",
+    "body": "Bu istenmeyen bir mesajdır.",
+    "sentDate": "Jan 2, 2026, 3:54:55 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "user2@nyp.com",
+    "folder": "TRASH"
+  },
+  {
+    "id": "a94035db-89ce-4d8c-8d9e-d0e843fcb283",
+    "from": "user1@nyp.com",
+    "to": [
+      "admin@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "Yardım Talebi",
+    "body": "Sisteme erişimde sorun yaşıyorum. Yardımcı olabilir misiniz?",
+    "sentDate": "Jan 6, 2026, 3:54:55 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "HIGH",
+    "attachments": [],
+    "ownerEmail": "admin@nyp.com",
+    "folder": "INBOX"
+  },
+  {
+    "id": "e9faef2e-62d7-4480-b42b-84a212fa3223",
+    "from": "ferza@nyp.com",
+    "to": [
+      "admin@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "teknik problem",
+    "body": "çöp kutusundaki maillerimi kurtaramıyorum , sorunla ilgili dönüş bekliyorum.",
+    "sentDate": "Jan 7, 2026, 4:12:55 AM",
+    "isRead": true,
+    "isStarred": true,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "ferza@nyp.com",
+    "folder": "DRAFTS"
+  },
+  {
+    "from": "ferza@nyp.com",
+    "to": [
+      "user1@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "toplantı",
+    "body": "toplantı saati netleştiğinde size dönüş sağlanacaktır.",
+    "sentDate": "Jan 7, 2026, 4:14:09 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "ferza@nyp.com",
+    "folder": "SENT"
+  },
+  {
+    "from": "ferza@nyp.com",
+    "to": [
+      "user1@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "toplantı",
+    "body": "toplantı saati netleştiğinde size dönüş sağlanacaktır.",
+    "sentDate": "Jan 7, 2026, 4:14:09 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "user1@nyp.com",
+    "folder": "INBOX"
+  },
+  {
+    "from": "ferza@nyp.com",
+    "to": [
+      "admin@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "",
+    "body": "yanlış mail",
+    "sentDate": "Jan 7, 2026, 4:14:42 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "ferza@nyp.com",
+    "folder": "SENT"
+  },
+  {
+    "from": "ferza@nyp.com",
+    "to": [
+      "admin@nyp.com"
+    ],
+    "cc": [],
+    "bcc": [],
+    "subject": "",
+    "body": "yanlış mail",
+    "sentDate": "Jan 7, 2026, 4:14:42 AM",
+    "isRead": false,
+    "isStarred": false,
+    "priority": "NORMAL",
+    "attachments": [],
+    "ownerEmail": "admin@nyp.com",
+    "folder": "INBOX"
+  }
+]

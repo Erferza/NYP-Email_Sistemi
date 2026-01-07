@@ -1,6 +1,7 @@
 package models;
 
 import enums.Priority;
+import enums.FolderType;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class Email implements Serializable {
     private boolean isStarred;
     private Priority priority;
     private List<Attachment> attachments;
+    private String ownerEmail;  // Email sahibinin adresi
+    private FolderType folder;   // Email'in bulunduğu klasör
 
     public Email() {
         this.to = new ArrayList<>();
@@ -37,6 +40,7 @@ public class Email implements Serializable {
         this.isStarred = false;
         this.priority = Priority.NORMAL;
         this.sentDate = new Date();
+        this.folder = FolderType.INBOX;
     }
 
     public Email(String from, String to, String subject, String body) {
@@ -166,6 +170,22 @@ public class Email implements Serializable {
 
     public void addAttachment(Attachment attachment) {
         this.attachments.add(attachment);
+    }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
+
+    public FolderType getFolder() {
+        return folder;
+    }
+
+    public void setFolder(FolderType folder) {
+        this.folder = folder;
     }
 
     // İş mantığı metodları

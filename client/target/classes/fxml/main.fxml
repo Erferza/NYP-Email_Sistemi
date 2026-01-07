@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" styleClass="root">
+    
+    <!-- Sidebar -->
+    <left>
+        <VBox fx:id="sidebar" spacing="10" prefWidth="220" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+            
+            <Button fx:id="composeButton" text="✏️  Oluştur" styleClass="primary-button" 
+                    maxWidth="Infinity" prefHeight="45" onAction="#handleCompose"/>
+            
+            <Separator/>
+            
+            <!-- Navigation -->
+            <VBox fx:id="navBox" spacing="5">
+                <Button fx:id="inboxButton" text="📥 Gelen Kutusu" styleClass="nav-button" 
+                        maxWidth="Infinity" onAction="#showInbox"/>
+                <Button fx:id="sentButton" text="📤 Gönderilenler" styleClass="nav-button" 
+                        maxWidth="Infinity" onAction="#showSent"/>
+                <Button fx:id="draftsButton" text="📝 Taslaklar" styleClass="nav-button" 
+                        maxWidth="Infinity" onAction="#showDrafts"/>
+                <Button fx:id="starredButton" text="⭐ Yıldızlı" styleClass="nav-button" 
+                        maxWidth="Infinity" onAction="#showStarred"/>
+                <Button fx:id="trashButton" text="🗑️  Çöp Kutusu" styleClass="nav-button" 
+                        maxWidth="Infinity" onAction="#showTrash"/>
+            </VBox>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            
+            <!-- Admin Button (if admin) -->
+            <VBox fx:id="adminSection" spacing="10" visible="false" managed="false">
+                <Button fx:id="adminButton" text="🛡️ Admin Dashboard" 
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"
+                        maxWidth="Infinity" prefHeight="40" onAction="#handleAdminDashboard"/>
+                <Separator/>
+            </VBox>
+            
+            <!-- User Profile -->
+            <HBox fx:id="userProfile" spacing="10" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label fx:id="userNameLabel" style="-fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="logoutButton" text="🚪" 
+                        style="-fx-background-color: transparent; -fx-text-fill: #f38ba8; -fx-cursor: hand;"
+                        onAction="#handleLogout">
+                    <tooltip>
+                        <Tooltip text="Çıkış Yap"/>
+                    </tooltip>
+                </Button>
+            </HBox>
+        </VBox>
+    </left>
+    
+    <!-- Center: Email List + Detail -->
+    <center>
+        <SplitPane dividerPositions="0.4">
+            <!-- Email List -->
+            <VBox>
+                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="list-header">
+                    <padding>
+                        <Insets top="15" right="15" bottom="15" left="15"/>
+                    </padding>
+                    <Label fx:id="folderNameLabel" text="Gelen Kutusu" styleClass="folder-name"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="emailCountLabel" text="0 e-posta" style="-fx-text-fill: #585b70;"/>
+                </HBox>
+                
+                <ListView fx:id="emailListView" VBox.vgrow="ALWAYS"/>
+            </VBox>
+            
+            <!-- Email Detail -->
+            <VBox fx:id="detailView">
+                <VBox fx:id="detailContainer" alignment="CENTER" VBox.vgrow="ALWAYS">
+                    <Label text="Önizlemek için bir e-posta seçin" 
+                           style="-fx-text-fill: #585b70; -fx-font-size: 16px;"/>
+                </VBox>
+            </VBox>
+        </SplitPane>
+    </center>
+</BorderPane>

@@ -1,5 +1,6 @@
 package gui;
 
+import enums.UserRole;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import models.Email;
 import models.Folder;
 import models.User;
 import services.Mailbox;
+import services.UserService;
 import utils.DateFormatter;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class MainView {
   private BorderPane root;
   private User user;
   private Mailbox mailbox;
+  private Stage stage;
 
   private ListView<Email> emailListView;
   private VBox detailView;
@@ -105,6 +108,18 @@ public class MainView {
     Region spacer = new Region();
     VBox.setVgrow(spacer, Priority.ALWAYS);
 
+    // Admin için Dashboard butonu ekle
+    VBox bottomSection = new VBox(10);
+    if (user.getRole() == UserRole.ADMIN) {
+      Button adminBtn = new Button("🛡️ Admin Dashboard");
+      adminBtn.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;");
+      adminBtn.setMaxWidth(Double.MAX_VALUE);
+      adminBtn.setPrefHeight(40);
+      adminBtn.setOnAction(e -> openAdminDashboard());
+      bottomSection.getChildren().add(adminBtn);
+      bottomSection.getChildren().add(new Separator());
+    }
+
     HBox userProfile = new HBox(10);
     userProfile.setAlignment(Pos.CENTER_LEFT);
     userProfile.setPadding(new Insets(10));
@@ -119,8 +134,9 @@ public class MainView {
     logoutBtn.setOnAction(e -> App.logout());
 
     userProfile.getChildren().addAll(avatar, userName, logoutBtn);
+    bottomSection.getChildren().add(userProfile);
 
-    sidebar.getChildren().addAll(composeBtn, new Separator(), navBox, spacer, new Separator(), userProfile);
+    sidebar.getChildren().addAll(composeBtn, new Separator(), navBox, spacer, bottomSection);
 
     VBox listPane = new VBox();
     listPane.setPrefWidth(350);
@@ -401,5 +417,25 @@ public class MainView {
     stage.showAndWait();
 
     refreshEmailList();
+  }
+
+  private void openAdminDashboard() {
+    // Admin Dashboard - Basitleştirilmiş versiyon
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("🛡️ Admin Dashboard");
+    alert.setHeaderText("Sitem İstatistikleri");
+    
+    try {
+        int userCount = UserService.getInstance().getAllUsers().size();
+        alert.setContentText(
+            "Toplam Kullanıcı: " + userCount + "\n" +
+            "Aktif Kullanıcı: " + user.getFullName() + "\n" +
+            "Rol: " + user.getRole()
+        );
+    } catch (Exception e) {
+        alert.setContentText("Admin paneli yüklenemedi: " + e.getMessage());
+    }
+    
+    alert.showAndWait();
   }
 }

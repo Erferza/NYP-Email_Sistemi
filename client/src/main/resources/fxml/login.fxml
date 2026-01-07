@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="gui.LoginController" styleClass="root">
+    
+    <center>
+        <StackPane alignment="CENTER">
+            <!-- Login Panel -->
+            <VBox fx:id="loginPanel" spacing="20" maxWidth="400" maxHeight="500" 
+                  alignment="CENTER" styleClass="card" visible="true">
+                <padding>
+                    <Insets top="40" right="40" bottom="40" left="40"/>
+                </padding>
+                
+                <!-- Logo/Brand -->
+                <VBox alignment="CENTER" spacing="5">
+                    <Label text="📧" style="-fx-font-size: 56px;"/>
+                    <Label text="NYP Email System" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #89b4fa;"/>
+                    <Label text="Güvenli ve modern e-posta çözümü" style="-fx-font-size: 12px; -fx-text-fill: #a6adc8;"/>
+                </VBox>
+                
+                <Separator/>
+                
+                <Label text="Giriş Yap" styleClass="header-label"/>
+                
+                <TextField fx:id="loginEmailField" promptText="E-posta" prefHeight="40"/>
+                
+                <PasswordField fx:id="loginPasswordField" promptText="Şifre" prefHeight="40"/>
+                
+                <Label fx:id="loginErrorLabel" style="-fx-text-fill: #f38ba8; -fx-font-size: 12px;"/>
+                
+                <Button fx:id="loginButton" text="Giriş Yap" styleClass="primary-button" 
+                        maxWidth="Infinity" prefHeight="40" onAction="#handleLogin"/>
+                
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="Hesabınız yok mu?" style="-fx-text-fill: #585b70;"/>
+                    <Hyperlink fx:id="showRegisterLink" text="Kayıt Ol" onAction="#showRegister"
+                               style="-fx-text-fill: #89b4fa;"/>
+                </HBox>
+            </VBox>
+            
+            <!-- Register Panel -->
+            <VBox fx:id="registerPanel" spacing="20" maxWidth="400" maxHeight="550" 
+                  alignment="CENTER" styleClass="card" visible="false">
+                <padding>
+                    <Insets top="40" right="40" bottom="40" left="40"/>
+                </padding>
+                
+                <!-- Logo/Brand -->
+                <VBox alignment="CENTER" spacing="5">
+                    <Label text="📧" style="-fx-font-size: 56px;"/>
+                    <Label text="NYP Email System" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #89b4fa;"/>
+                </VBox>
+                
+                <Separator/>
+                
+                <Label text="Kayıt Ol" styleClass="header-label"/>
+                
+                <TextField fx:id="registerNameField" promptText="Ad Soyad" prefHeight="40"/>
+                
+                <TextField fx:id="registerEmailField" promptText="E-posta" prefHeight="40"/>
+                
+                <PasswordField fx:id="registerPasswordField" promptText="Şifre" prefHeight="40"/>
+                
+                <PasswordField fx:id="registerConfirmPasswordField" promptText="Şifre Tekrar" prefHeight="40"/>
+                
+                <Label fx:id="registerErrorLabel" style="-fx-text-fill: #f38ba8; -fx-font-size: 12px;"/>
+                
+                <Button fx:id="registerButton" text="Kayıt Ol" styleClass="primary-button" 
+                        maxWidth="Infinity" prefHeight="40" onAction="#handleRegister"/>
+                
+                <HBox spacing="5" alignment="CENTER">
+                    <Label text="Zaten hesabınız var mı?" style="-fx-text-fill: #585b70;"/>
+                    <Hyperlink fx:id="showLoginLink" text="Giriş Yap" onAction="#showLogin"
+                               style="-fx-text-fill: #89b4fa;"/>
+                </HBox>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

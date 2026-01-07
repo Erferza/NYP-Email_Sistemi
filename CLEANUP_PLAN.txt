@@ -1,0 +1,39 @@
+📦 KLASÖR YAPISINI SADELEŞTİRME PLANI
+
+❌ SİLİNECEKLER (Client):
+1. /client/src/main/java/exceptions/* - Gereksiz custom exception'lar
+2. /client/src/main/java/interfaces/* - Kullanılmayan interface'ler
+3. /client/src/main/java/enums/* - Backend'te zaten var, duplicate
+4. /client/src/main/java/models/AdminUser.java - Gereksiz, User yeter
+5. /client/src/main/java/models/RegularUser.java - Gereksiz, User yeter
+6. /client/src/main/java/gui/AdminDashboardView.java - MainView'a taşınacak
+
+❌ SİLİNECEKLER (Backend):
+1. /backend/src/main/java/.../controller/AuthController.java - Birleştirilecek
+2. /backend/src/main/java/.../repository/* - Zaten kullanılmıyor
+
+✅ KALACAKLAR (Client):
+- gui/App.java
+- gui/LoginView.java
+- gui/MainView.java (AdminDashboard dahil)
+- gui/ComposeView.java
+- models/User.java
+- models/Email.java
+- models/Folder.java
+- models/DraftEmail.java
+- services/ApiClient.java
+- services/Mailbox.java
+- services/UserService.java
+- utils/Constants.java
+- utils/DateFormatter.java
+- utils/EmailValidator.java
+
+✅ KALACAKLAR (Backend):
+- BackendApplication.java
+- controller/ApiController.java (Auth + Email birleşik)
+- enums/* (3 dosya)
+- model/User.java
+- model/Email.java
+- model/Attachment.java
+- service/AuthService.java
+- service/EmailService.java

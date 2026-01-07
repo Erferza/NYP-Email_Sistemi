@@ -2,29 +2,31 @@ package models;
 
 import enums.UserRole;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * Soyut (Abstract) Kullanıcı sınıfı
- * Tüm kullanıcı türleri bu sınıftan türetilir
+ * Kullanıcı sınıfı
  */
-public abstract class User implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    protected String id;
-    protected String email;
-    protected String password;
-    protected String fullName;
-    protected Date createdAt;
-    protected Date lastLogin;
-    protected boolean isActive;
-    protected String profilePicture;
+    private String id;
+    private String email;
+    private String password;
+    private String fullName;
+    private Date createdAt;
+    private Date lastLogin;
+    private boolean isActive;
+    private String profilePicture;
+    private UserRole role;
 
     public User() {
         this.createdAt = new Date();
         this.isActive = true;
+        this.role = UserRole.REGULAR;
     }
 
     public User(String email, String password, String fullName) {
@@ -34,24 +36,40 @@ public abstract class User implements Serializable {
         this.fullName = fullName;
     }
 
-    // Abstract metodlar - alt sınıflar implement etmek zorunda
+    public User(String email, String password, String fullName, UserRole role) {
+        this(email, password, fullName);
+        this.role = role;
+    }
 
-    /**
-     * Kullanıcının rolünü döndürür
-     */
-    public abstract UserRole getRole();
+    // Kullanıcı metodları
 
-    /**
-     * Kullanıcının yetkilerini döndürür
-     */
-    public abstract List<String> getPermissions();
+    public UserRole getRole() {
+        return role;
+    }
 
-    /**
-     * Kullanıcıya özel hoşgeldin mesajı
-     */
-    public abstract String getWelcomeMessage();
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 
-    // Concrete metodlar
+    public List<String> getPermissions() {
+        List<String> permissions = new ArrayList<>();
+        if (role == UserRole.ADMIN) {
+            permissions.add("VIEW_USERS");
+            permissions.add("DELETE_USERS");
+            permissions.add("VIEW_ALL_EMAILS");
+        }
+        permissions.add("SEND_EMAIL");
+        permissions.add("READ_EMAIL");
+        permissions.add("DELETE_EMAIL");
+        return permissions;
+    }
+
+    public String getWelcomeMessage() {
+        if (role == UserRole.ADMIN) {
+            return "Hoşgeldiniz Admin " + fullName;
+        }
+        return "Hoşgeldiniz " + fullName;
+    }
 
     /**
      * Kullanıcı girişi yapar

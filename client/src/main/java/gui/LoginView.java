@@ -143,6 +143,10 @@ public class LoginView {
             String pass = passField.getText().trim();
             String passConf = passConfirmField.getText().trim();
 
+            System.out.println("DEBUG - Email: '" + email + "'");
+            System.out.println("DEBUG - Email length: " + email.length());
+            System.out.println("DEBUG - Valid: " + EmailValidator.isValidEmail(email));
+            
             if (!EmailValidator.isValidEmail(email)) {
                 errorLabel.setText("Geçersiz e-posta formatı!");
                 return;

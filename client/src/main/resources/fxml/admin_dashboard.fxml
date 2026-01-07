@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="gui.AdminDashboardController" styleClass="root" prefWidth="900" prefHeight="650">
+    
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+            <Label text="👤 Admin Dashboard" styleClass="header-label" style="-fx-font-size: 24px;"/>
+        </HBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-pane">
+            <VBox spacing="25" style="-fx-padding: 30;">
+                
+                <!-- İstatistik Kartları -->
+                <HBox spacing="20" alignment="CENTER">
+                    <!-- Toplam Kullanıcılar -->
+                    <VBox alignment="CENTER" spacing="10" styleClass="stat-card" prefWidth="250" prefHeight="140">
+                        <Label text="👥" style="-fx-font-size: 40px;"/>
+                        <Label fx:id="totalUsersLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold;"/>
+                        <Label text="Toplam Kullanıcı" style="-fx-font-size: 14px; -fx-text-fill: #a6adc8;"/>
+                    </VBox>
+                    
+                    <!-- Toplam Emailler -->
+                    <VBox alignment="CENTER" spacing="10" styleClass="stat-card" prefWidth="250" prefHeight="140">
+                        <Label text="📧" style="-fx-font-size: 40px;"/>
+                        <Label fx:id="totalEmailsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold;"/>
+                        <Label text="Toplam Email" style="-fx-font-size: 14px; -fx-text-fill: #a6adc8;"/>
+                    </VBox>
+                    
+                    <!-- Okunmamış Emailler -->
+                    <VBox alignment="CENTER" spacing="10" styleClass="stat-card" prefWidth="250" prefHeight="140">
+                        <Label text="📬" style="-fx-font-size: 40px;"/>
+                        <Label fx:id="unreadEmailsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: bold;"/>
+                        <Label text="Okunmamış Email" style="-fx-font-size: 14px; -fx-text-fill: #a6adc8;"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Grafikler -->
+                <HBox spacing="20" alignment="CENTER">
+                    <!-- Email Dağılımı -->
+                    <VBox spacing="10" styleClass="card" prefWidth="400" prefHeight="350">
+                        <Label text="📊 Kullanıcılara Göre Email Dağılımı" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        <PieChart fx:id="emailDistributionChart" prefHeight="300"/>
+                    </VBox>
+                    
+                    <!-- Klasör Dağılımı -->
+                    <VBox spacing="10" styleClass="card" prefWidth="400" prefHeight="350">
+                        <Label text="📁 Klasörlere Göre Email Dağılımı" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        <BarChart fx:id="folderDistributionChart" prefHeight="300">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" />
+                            </yAxis>
+                        </BarChart>
+                    </VBox>
+                </HBox>
+                
+                <!-- Kullanıcı Listesi -->
+                <VBox spacing="15" styleClass="card" VBox.vgrow="ALWAYS">
+                    <Label text="👥 Kullanıcı Listesi" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <TableView fx:id="usersTable" prefHeight="300" minHeight="250" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="emailColumn" text="Email" prefWidth="280" minWidth="200"/>
+                            <TableColumn fx:id="nameColumn" text="Ad Soyad" prefWidth="200" minWidth="150"/>
+                            <TableColumn fx:id="roleColumn" text="Rol" prefWidth="120" minWidth="80"/>
+                            <TableColumn fx:id="statusColumn" text="Durum" prefWidth="100" minWidth="80"/>
+                            <TableColumn fx:id="lastLoginColumn" text="Son Giriş" prefWidth="180" minWidth="150"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+                
+            </VBox>
+        </ScrollPane>
+    </center>
+    
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="15" styleClass="footer">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            <Button fx:id="refreshButton" text="🔄 Yenile" styleClass="secondary-button" 
+                    onAction="#handleRefresh"/>
+            <Button fx:id="closeButton" text="Kapat" styleClass="secondary-button" 
+                    onAction="#handleClose"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>

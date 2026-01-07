@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import models.User;
@@ -25,11 +26,16 @@ public class App extends Application {
     }
 
     public static void showLoginView() {
-        LoginView loginView = new LoginView();
-        Scene scene = new Scene(loginView.getView(), 900, 600);
-        applyTheme(scene);
-        primaryStage.setScene(scene);
-        primaryStage.centerOnScreen();
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/login.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 600);
+            applyTheme(scene);
+            primaryStage.setScene(scene);
+            primaryStage.centerOnScreen();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Login view yüklenemedi: " + e.getMessage());
+        }
     }
 
     public static void showMainView(User user) {

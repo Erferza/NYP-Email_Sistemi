@@ -10,14 +10,13 @@ import models.DraftEmail;
 import models.Email;
 import models.User;
 import services.Mailbox;
-import exceptions.MailSendException;
 
 public class ComposeView {
 
     private BorderPane root;
     private Mailbox mailbox;
     private User currentUser;
-    private Email replyContext; // If replying to this
+    private Email replyContext;
 
     private TextField toField;
     private TextField subjectField;
@@ -108,10 +107,13 @@ public class ComposeView {
         Email email = new Email(currentUser.getEmail(), to, subject, body);
 
         try {
-            mailbox.sendMail(email);
-            // Close window on success
-            closeWindow();
-        } catch (MailSendException e) {
+            boolean success = mailbox.sendMail(email);
+            if (success) {
+                closeWindow();
+            } else {
+                showAlert("Gönderim Hatası", "Email gönderilemedi");
+            }
+        } catch (Exception e) {
             showAlert("Gönderim Hatası", e.getMessage());
         }
     }

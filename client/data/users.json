@@ -1,0 +1,38 @@
+[
+  {
+    "id": "f526c429-a6af-4077-93c8-5b66fb35c413",
+    "email": "admin@nyp.com",
+    "password": "admin123",
+    "fullName": "Admin Kullanıcı",
+    "createdAt": "Jan 7, 2026, 3:54:02 AM",
+    "isActive": true,
+    "role": "ADMIN"
+  },
+  {
+    "id": "f47f930a-7d5e-4599-b2da-4b5cc435c767",
+    "email": "user1@nyp.com",
+    "password": "123456",
+    "fullName": "Ahmet Yılmaz",
+    "createdAt": "Jan 7, 2026, 3:54:02 AM",
+    "isActive": true,
+    "role": "REGULAR"
+  },
+  {
+    "id": "dd2969a2-d3ac-4a3a-8670-db9a45929d56",
+    "email": "user2@nyp.com",
+    "password": "123456",
+    "fullName": "Ayşe Demir",
+    "createdAt": "Jan 7, 2026, 3:54:02 AM",
+    "isActive": true,
+    "role": "REGULAR"
+  },
+  {
+    "id": "79e9c7a6-72b8-49f5-b8d3-5837b771664b",
+    "email": "ferza@nyp.com",
+    "password": "ferza123",
+    "fullName": "ferza er",
+    "createdAt": "Jan 7, 2026, 4:11:04 AM",
+    "isActive": true,
+    "role": "REGULAR"
+  }
+]
